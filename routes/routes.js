@@ -14,3 +14,4 @@ Router.route('/products/:id')
 .put(modifyProduct)
 .get(getOneProduct)
 
+module.exports = Router

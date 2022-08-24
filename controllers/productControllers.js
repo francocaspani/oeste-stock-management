@@ -90,51 +90,7 @@ const productControllers = {
     //         success: error ? false : true,
     //         error: console.log(error)
     //     })
-    // },
-    // handleLikes: async (req, res) => {
-    //     const idUser = req.user.id
-    //     const idItinerary = req.params.id
-    //     let itinerary
-    //     try {
-    //         itinerary = await Product.find({ _id: idItinerary })
-    //         itinerary = itinerary[0]
-    //         if (itinerary.likes.length > 0) {
-    //             if (itinerary.likes.indexOf(idUser) === -1) {
-    //                 itinerary.likes.push(idUser)
-    //                 await itinerary.save()
-    //                 res.json({
-    //                     response: { itinerary },
-    //                     success: true,
-    //                     message: 'Added to favourites'
-    //                 })
-    //             } else {
-    //                 const index = itinerary.likes.indexOf(idUser)
-    //                 itinerary.likes.splice(index, 1)
-    //                 await itinerary.save()
-    //                 res.json({
-    //                     response: { itinerary },
-    //                     success: true,
-    //                     message: 'Removed from favourites'
-    //                 })
-    //             }
-    //         } else {
-    //             itinerary.likes.push(idUser)
-    //             await itinerary.save()
-    //             res.json({
-    //                 response: { itinerary },
-    //                 success: true,
-    //                 message: 'Added to favourites'
-    //             })
-    //         }
-    //     } catch (error) {
-    //         console.log(error)
-    //         res.json({
-    //             response: 'Error',
-    //             success: false,
-    //             message: 'Something went wrogn, please try again'
-    //         })
-    //     }
-
+    // }
     // }
 }
 
