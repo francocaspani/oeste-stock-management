@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken')
 
 const storeControllers = {
     signUpStore: async (req, res) => {
-        let { name, username, password, isDistr, isAdmin } = req.body.storeData
+        let { name, username, password, isDistr } = req.body.storeData
         try {
             const storeExist = await Store.findOne({ username })
             if (storeExist) {
@@ -20,8 +20,7 @@ const storeControllers = {
                     name,
                     username,
                     password: [hashPassword],
-                    isDistr,
-                    isAdmin
+                    isDistr
                 })
                 await newUser.save()
                 res.json({
@@ -54,7 +53,6 @@ const storeControllers = {
                         name: storeExist.name,
                         username: storeExist.username,
                         stock: storeExist.stock,
-                        isAdmin: storeExist.isAdmin,
                         isDistr: storeExist.isDistr
                     }
                     const token = jwt.sign({ ...storeData }, process.env.SECRET_KEY)
@@ -101,7 +99,6 @@ const storeControllers = {
                         name: req.store.name,
                         username: req.store.username,
                         stock: req.store.stock,
-                        isAdmin: req.store.isAdmin,
                         isDistr: req.store.isDistr
                     }
                 },

@@ -7,7 +7,8 @@ const SoldSchema = new mongoose.Schema({
     date: { type: Date },
     price: { type: Number },
     payMethod: { type: String },
-    payDate: { type: Date }
+    payDate: { type: Date },
+    comments: { type: String }
 })
 
 const Sold = mongoose.model('product', productSoldSchema)

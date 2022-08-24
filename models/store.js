@@ -8,7 +8,6 @@ const storeSchema = new mongoose.Schema({
         productId: { type: mongoose.Types.ObjectId, ref: 'product' },
         stock: { type: Number }
     }],
-    isAdmin: { type: Boolean, required: true },
     isDistr: { type: Boolean, required: true }
 })
 

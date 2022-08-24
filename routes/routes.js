@@ -1,6 +1,7 @@
 const Router = require('express').Router();
 const validator = require('../config/validator')
-const passport = require('../config/passport')
+const passportStore = require('../config/passport')
+const passportUser = require('../config/passportUser')
 
 const productControllers = require('../controllers/productControllers');
 const {getProducts, getOneProduct, addProduct, modifyProduct, removeProduct} = productControllers
