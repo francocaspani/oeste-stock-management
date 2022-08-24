@@ -1,7 +1,7 @@
 const passport = require('passport')
 const jwtStrategy = require('passport-jwt').Strategy
 const extractJwt = require('passport-jwt').ExtractJwt
-const User = require('../models/user')
+const Store = require('../models/store')
 
 
 module.exports = passport.use(new jwtStrategy({
@@ -9,11 +9,11 @@ module.exports = passport.use(new jwtStrategy({
     secretOrKey: process.env.SECRET_KEY
 },(jwt_payload,done)=>{
     console.log(jwt_payload)
-    User.findOne({_id: jwt_payload.id}).populate('favourite')
-    .then(user => {
-        console.log(user)
-        if (user){
-            return done(null, user)
+    Store.findOne({_id: jwt_payload.id}).populate('stock')
+    .then(store => {
+        console.log(store)
+        if (store){
+            return done(null, store)
         }
         else if (err) {
             console.log(err)
