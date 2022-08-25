@@ -15,10 +15,7 @@ const validator = (req, res, next) => {
             "string.min": "The password must include at least 6 alphanumeric characters.",
             "string.max": "The password must not exceed 30 alphanumeric characters."
         }),
-        from: joi.string(),
-        country: joi.string(),
         lastName: joi.any(),
-        avatar: joi.string(),
         isAdmin: joi.boolean()
     })
 

@@ -6,7 +6,9 @@ const storeSchema = new mongoose.Schema({
     password: [{ type: String, required: true }],
     stock: [{
         productId: { type: mongoose.Types.ObjectId, ref: 'product' },
-        stock: { type: Number }
+        stock: { type: Number },
+        lastModifyBy: { type: mongoose.Types.ObjectId, refPath: 'model_type' },
+        model_type: {  type: String, enum: ['user', 'store'], required: true }
     }],
     isDistr: { type: Boolean, required: true }
 })

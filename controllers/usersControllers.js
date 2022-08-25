@@ -2,6 +2,7 @@ const User = require('../models/user')
 const bcryptjs = require('bcryptjs')
 const crypto = require('crypto')
 const jwt = require('jsonwebtoken')
+const Store = require('../models/store')
 
 
 const usersControllers = {
@@ -109,6 +110,75 @@ const usersControllers = {
             res.json({
                 success: false,
                 message: 'Por favor ingresa nuevamente'
+            })
+        }
+    },
+    handleStockUser: async (req, res) => {
+        const idUser = req.user.id
+        const idStore = req.params.id
+        const {productId, newStock} = req.body.newStock
+        let store
+        try {
+            store = await Store.find({ _id: idStore })
+            store = store[0]
+            if (store.stock.length > 0) {
+                const productIds = store.stock.map(e => e.productId)
+                if (productIds.indexOf(idProduct) === -1) {
+                    if (newStock === 0) {
+                        res.json({
+                            success: false,
+                            message: 'Ingrese una cantidad mayor a 0'
+                        })
+                    } else {
+                        store.stock.push({
+                            productId: idProduct,
+                            stock: newStock
+                        })
+                        await store.save()
+                        res.json({
+                            response: { store },
+                            success: true,
+                            message: 'Stock actualizado correctamente'
+                        })
+                    }
+                } else {
+                    const index = productIds.indexOf(idProduct)
+                    if (newStock === 0) {
+                        store.stock.splice(index, 1)
+                        await store.save()
+                        res.json({
+                            response: { store },
+                            success: true,
+                            message: 'Stock actualizado correctamente'
+                        })
+                    } else {
+                        store.stock[index].stock = newStock
+                        await store.save()
+                        res.json({
+                            response: { store },
+                            success: true,
+                            message: 'Stock actualizado correctamente'
+                        })
+                    }
+                }
+            } else {
+                store.stock.push({
+                    productId: idProduct,
+                    stock: newStock
+                })
+                await store.save()
+                res.json({
+                    response: { store },
+                    success: true,
+                    message: 'Stock actualizado correctamente'
+                })
+            }
+        } catch (error) {
+            console.log(error)
+            res.json({
+                response: 'Error',
+                success: false,
+                message: 'Algo fallo, por favor intenta de nuevo'
             })
         }
     }

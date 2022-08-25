@@ -7,7 +7,8 @@ const productSchema = new mongoose.Schema({
     priceDistr: { type: Number },
     massStock: { type: Number },
     color: { type: String },
-    discount: { type: Number }
+    discount: { type: Number },
+    type: { type: String }
 })
 
 const Product = mongoose.model('product', productSchema)
